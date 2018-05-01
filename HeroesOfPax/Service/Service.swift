@@ -11,41 +11,41 @@ import RxCocoa
 import RxSwift
 
 protocol Servicing {
-    // Input
-    var currentPressureValue: PublishSubject<Float> { get }
-    var currentTemperatureValue: PublishSubject<[Float]> { get }   // 2 legs
-    
     // Output
     var didUpdateTemperature: Observable<Temperature> { get }
     var didUpdatePressures: Observable<[LegPressure]> { get }
 }
 
 class Service: Servicing {
-    // Input
-    let currentPressureValue = PublishSubject<Float>()
-    let currentTemperatureValue = PublishSubject<[Float]>()
-    
-    
+
     // Output
     let didUpdatePressures: Observable<[LegPressure]>
     let didUpdateTemperature: Observable<Temperature>
     
     
     // private
-    var currentState: LegState
+    private let state: Observable<LegState>
     
-    init() {
-        didUpdateTemperature = currentTemperatureValue
-            .map { temp -> Temperature in
-            Temperature(rightLegTemp: temp[0], leftLegTemp: temp[1])
-        }
+    init(bleService: BLEServicing) {
+        let _state: Variable<LegState> = Variable<LegState>(LegState.initialState())
         
-        didUpdatePressures = currentPressureValue.map { presures -> [LegPressure] in
-            [LegPressure(value: 41)]
-        }
+        state = bleService
+            .currentPressureValue
+            .withLatestFrom(_state.asObservable()) {(currentPressure, legState) -> LegState in
+                 legState.nextState(currentPressure)
+            }
+            .do(onNext: { s in
+                _state.value = s
+            })
+            .startWith(LegState.initialState())
+            .debug("RX: State")
+
+        didUpdatePressures = state
+            .map { legState -> [LegPressure] in
+                return legState.pressures
+            }.debug("RX: didUpdatePressures")
         
-        currentState = LegState(currentPumpIndex: 0, pressures: [])
-        
-        
+        //TODO:
+        didUpdateTemperature = Observable.just(Temperature(rightLegTemp: 0, leftLegTemp: 0))
     }
 }
