@@ -15,7 +15,10 @@ class ViewController: UIViewController {
     @IBOutlet var legPressuresLabels: [UIButton]!
     
     var viewModel: ViewModeling!
+    
+    private var topConstraint: [Int: Constraint] = [Int: Constraint]()
 
+    
     private let disposeBag: DisposeBag = DisposeBag()
     
     override func viewDidLoad() {
@@ -23,26 +26,29 @@ class ViewController: UIViewController {
         
         let bleService = BLEService()
         let service = Service(bleService: bleService)
+        view.layoutIfNeeded()
         viewModel = ViewModel(service: service, viewsHeight: (legPressuresLabels.first?.frame.height)!)
         
         setupViews()
         setupBindings()
     }
     
-    func setupViews() {
+    private func setupViews() {
         legPressuresLabels.forEach { (button) in
             let view = UIView()
             print("VVVV: \(view)")
             view.backgroundColor = UIColor.red
             view.tag = 22
             button.addSubview(view)
-            view.snp.makeConstraints({ (make) in
-                make.edges.edges.equalTo(UIEdgeInsets(top: button.frame.height, left: 0, bottom: 0, right: 0))
-            })
+            button.sendSubview(toBack: view)
+            view.snp.makeConstraints { (make) in
+                make.left.right.bottom.equalTo(0)
+                self.topConstraint[button.tag] = make.top.equalTo(button.frame.height).constraint
+            }
         }
     }
     
-    func setupBindings() {
+    private func setupBindings() {
         
         viewModel
             .pressuersTitles
@@ -57,15 +63,17 @@ class ViewController: UIViewController {
             .viewNormalizedHeight
             .drive(onNext: { [weak self] heights in
                 self?.legPressuresLabels.forEach { (button) in
+                    guard let view = button.viewWithTag(22) else { return }
                     
-                    if let view = button.viewWithTag(22) {
-                        view.snp.remakeConstraints { (make) in
-                            var edgeInsetes = UIEdgeInsets.zero
-                            edgeInsetes.top = button.frame.height - heights[button.tag]
-                            make.edges.equalTo(edgeInsetes)
-                        }
+                    view.snp.updateConstraints { (make) in
+                        self?.topConstraint[button.tag]?.update(offset: button.frame.height - heights[button.tag])
                     }
+                    
+                    UIView.animate(withDuration: 1, animations: {
+                        self?.view.layoutIfNeeded()
+                    })
                 }
+                
             }).disposed(by: disposeBag)
     }
 }
