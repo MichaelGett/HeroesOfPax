@@ -22,3 +22,4 @@ struct LegState {
     let currentPumpIndex: Int
     let pressures: [LegPressure]
 }
+

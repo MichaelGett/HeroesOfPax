@@ -40,10 +40,12 @@ class Service: Servicing {
             Temperature(rightLegTemp: temp[0], leftLegTemp: temp[1])
         }
         
-        didUpdatePressures = currentPressureValue.map { [weak self] presures -> [LegPressure] in
+        didUpdatePressures = currentPressureValue.map { presures -> [LegPressure] in
             [LegPressure(value: 41)]
-//            self?.currentState.currentIndex
-            
         }
+        
+        currentState = LegState(currentPumpIndex: 0, pressures: [])
+        
+        
     }
 }
