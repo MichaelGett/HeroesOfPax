@@ -37,7 +37,6 @@ class ViewController: UIViewController {
     private func setupViews() {
         legPressuresLabels.forEach { (button) in
             let view = UIView()
-            print("VVVV: \(view)")
             view.backgroundColor = UIColor.red
             view.tag = 22
             button.addSubview(view)
@@ -69,12 +68,8 @@ class ViewController: UIViewController {
             .viewNormalizedHeight
             .drive(onNext: { [weak self] heights in
                 self?.legPressuresLabels.forEach { (button) in
-                    guard let view = button.viewWithTag(22) else { return }
-                    
-                    view.snp.updateConstraints { (make) in
-                        self?.topConstraint[button.tag]?.update(offset: button.frame.height - heights[button.tag])
-                    }
-                    
+                    self?.topConstraint[button.tag]?.update(offset: button.frame.height - heights[button.tag])
+                
                     UIView.animate(withDuration: 1, animations: {
                         self?.view.layoutIfNeeded()
                     })

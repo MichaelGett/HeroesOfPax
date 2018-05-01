@@ -28,7 +28,8 @@ class BLEService: BLEServicing {
     init() {
         
         currentPressureValue = start
-            .flatMap { _ -> Observable<Int> in
+            .observeOn(MainScheduler.instance)
+            .flatMapLatest { _ -> Observable<Int> in
                 Observable<Int>.timer(0, period: 1, scheduler: MainScheduler.instance)
             }
             .map { time -> Float in

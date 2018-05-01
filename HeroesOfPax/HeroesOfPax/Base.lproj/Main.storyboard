@@ -122,10 +122,10 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Xi4-6I-p1T" secondAttribute="bottom" constant="10" id="9Io-uP-xgm"/>
                             <constraint firstItem="Xi4-6I-p1T" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="9NE-Gs-smt"/>
                             <constraint firstItem="Egl-vv-bwP" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Bma-MF-7wG"/>
-                            <constraint firstAttribute="bottom" secondItem="vi1-mz-P3Y" secondAttribute="bottom" constant="10" id="DKQ-sK-Gkc"/>
                             <constraint firstItem="vi1-mz-P3Y" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Hso-yi-QLE"/>
                             <constraint firstItem="Xi4-6I-p1T" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.7" id="ZkL-AX-AI0"/>
                             <constraint firstItem="vi1-mz-P3Y" firstAttribute="leading" secondItem="xzE-LP-xwR" secondAttribute="trailing" id="f42-0G-8lr"/>
+                            <constraint firstItem="vi1-mz-P3Y" firstAttribute="bottom" secondItem="Xi4-6I-p1T" secondAttribute="bottom" id="rXK-RA-vUp"/>
                             <constraint firstItem="xzE-LP-xwR" firstAttribute="top" secondItem="Xi4-6I-p1T" secondAttribute="top" id="tDC-Wf-hYg"/>
                             <constraint firstItem="vi1-mz-P3Y" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.7" id="wGi-wj-dID"/>
                         </constraints>
