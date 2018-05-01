@@ -13,6 +13,7 @@ import SnapKit
 
 class ViewController: UIViewController {
     @IBOutlet var legPressuresLabels: [UIButton]!
+    @IBOutlet weak var startButton: UIButton!
     
     var viewModel: ViewModeling!
     
@@ -23,7 +24,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         let bleService = BLEService()
         let service = Service(bleService: bleService)
         view.layoutIfNeeded()
@@ -49,6 +50,11 @@ class ViewController: UIViewController {
     }
     
     private func setupBindings() {
+        
+        startButton.rx
+            .tap
+            .bind(to: viewModel.didTapStart)
+            .disposed(by: disposeBag)
         
         viewModel
             .pressuersTitles

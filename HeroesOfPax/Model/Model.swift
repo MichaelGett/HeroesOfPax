@@ -23,6 +23,10 @@ struct LegState {
     let pressures: [LegPressure]
     
     func nextState(_ newPressure: Float) -> LegState {
+        guard newPressure != -1 else {
+            //End of cycle - pressure reduced for all - back to initial state
+            return LegState.initialState()
+        }
         let currentPressure = pressures[currentPumpIndex]
         let newLegPressure = LegPressure(value: newPressure)
         var mutablePressures = pressures

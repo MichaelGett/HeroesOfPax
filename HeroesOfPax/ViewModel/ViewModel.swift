@@ -12,28 +12,34 @@ import RxCocoa
 
 protocol ViewModeling {
     //Input
-    //TODO: Phase 2
-//    var didUpdatePressures: PublishSubject<[LegPressure]> { get }
+    var didTapStart: PublishSubject<Void> { get }
     
-    //Output
-//    var rightLegTempTitle: Driver<String> { get }
-//    var leftLegTempTitle: Driver<String> { get }
     var pressuersTitles: Driver<[String]> { get }
     var viewNormalizedHeight: Driver<[CGFloat]> { get }
 }
 
 class ViewModel: ViewModeling {
+    var didTapStart: PublishSubject<Void> = PublishSubject<Void>()
     let pressuersTitles: Driver<[String]>
     let viewNormalizedHeight: Driver<[CGFloat]>
     
+    private var disposeBag: DisposeBag = DisposeBag()
+    
     init(service: Servicing, viewsHeight: CGFloat) {
+        
+        didTapStart
+            .subscribe(onNext: { _ in
+                service.start()
+            }).disposed(by: disposeBag)
+        
         pressuersTitles = service
             .didUpdatePressures
             .map { (pressures: [LegPressure]) -> [String] in
                 pressures.map { (pressure: LegPressure) -> String in
                     "\(pressure.value)"
                 }
-            }.debug("RX: pressuersTitles").asDriver(onErrorJustReturn: [])
+            }.debug("RX: pressuersTitles")
+            .asDriver(onErrorJustReturn: [])
         
         viewNormalizedHeight = service
             .didUpdatePressures
@@ -49,5 +55,3 @@ private func calc(buttonHeight: CGFloat, currentValue: Float, maxValue: Float ) 
     let height = Float(buttonHeight)
     return  CGFloat((height / maxValue) * currentValue)
 }
-
-

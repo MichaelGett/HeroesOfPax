@@ -12,21 +12,23 @@ import RxSwift
 
 protocol Servicing {
     // Output
-    var didUpdateTemperature: Observable<Temperature> { get }
     var didUpdatePressures: Observable<[LegPressure]> { get }
+    
+    func start() -> Void
 }
 
 class Service: Servicing {
-
     // Output
     let didUpdatePressures: Observable<[LegPressure]>
-    let didUpdateTemperature: Observable<Temperature>
-    
     
     // private
     private let state: Observable<LegState>
+    private let bleService: BLEServicing
+    private var disposeBag: DisposeBag = DisposeBag()
     
     init(bleService: BLEServicing) {
+        self.bleService = bleService
+        
         let _state: Variable<LegState> = Variable<LegState>(LegState.initialState())
         
         state = bleService
@@ -44,8 +46,9 @@ class Service: Servicing {
             .map { legState -> [LegPressure] in
                 return legState.pressures
             }.debug("RX: didUpdatePressures")
-        
-        //TODO:
-        didUpdateTemperature = Observable.just(Temperature(rightLegTemp: 0, leftLegTemp: 0))
+    }
+    
+    func start() {
+        self.bleService.start.onNext(())
     }
 }

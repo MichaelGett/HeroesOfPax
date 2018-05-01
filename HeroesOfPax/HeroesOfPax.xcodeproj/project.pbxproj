@@ -11,7 +11,6 @@
 		28255D4120979F0A0075DBBB /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28255D4020979F0A0075DBBB /* ViewModel.swift */; };
 		28255D442097A1780075DBBB /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28255D432097A1780075DBBB /* Service.swift */; };
 		28255D462098589F0075DBBB /* BLEService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28255D452098589F0075DBBB /* BLEService.swift */; };
-		28255D49209886880075DBBB /* FillableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28255D48209886880075DBBB /* FillableButton.swift */; };
 		742E2550209784AA0070ABEC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742E254F209784AA0070ABEC /* AppDelegate.swift */; };
 		742E2552209784AA0070ABEC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742E2551209784AA0070ABEC /* ViewController.swift */; };
 		742E2555209784AA0070ABEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 742E2553209784AA0070ABEC /* Main.storyboard */; };
@@ -27,7 +26,6 @@
 		28255D4020979F0A0075DBBB /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		28255D432097A1780075DBBB /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		28255D452098589F0075DBBB /* BLEService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEService.swift; sourceTree = "<group>"; };
-		28255D48209886880075DBBB /* FillableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillableButton.swift; sourceTree = "<group>"; };
 		742E254C209784AA0070ABEC /* HeroesOfPax.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HeroesOfPax.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		742E254F209784AA0070ABEC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		742E2551209784AA0070ABEC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -78,7 +76,6 @@
 		28255D47209886230075DBBB /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				28255D48209886880075DBBB /* FillableButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -271,7 +268,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				28255D3E20979C770075DBBB /* Model.swift in Sources */,
-				28255D49209886880075DBBB /* FillableButton.swift in Sources */,
 				742E2552209784AA0070ABEC /* ViewController.swift in Sources */,
 				28255D442097A1780075DBBB /* Service.swift in Sources */,
 				28255D4120979F0A0075DBBB /* ViewModel.swift in Sources */,

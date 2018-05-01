@@ -9,25 +9,31 @@
 import Foundation
 import RxSwift
 
-
-
 protocol BLEServicing {
+    // input
+    var start: PublishSubject<Void> { get }
+    
     //output
     var currentPressureValue: Observable<Float> { get }
 }
 
-
 class BLEService: BLEServicing {
+    let start: PublishSubject<Void> = PublishSubject<Void>()
     
     let currentPressureValue: Observable<Float>
-    static let fakeData: [Float] = [0.0,20.0,30.0,10.0,15.0,20,30,40,70,100,140,0,10,50]
     
+    static let fakeData: [Float] = [0, 30,60,90,120,30,60,90,120,30,60,90,120,30,60,90,120,30,60,90,120,-1]
+  
+    private var disposeBag: DisposeBag = DisposeBag()
     init() {
-        currentPressureValue = Observable<Int>
-            .timer(0, period: 1, scheduler: MainScheduler.instance)
+        
+        currentPressureValue = start
+            .flatMap { _ -> Observable<Int> in
+                Observable<Int>.timer(0, period: 1, scheduler: MainScheduler.instance)
+            }
             .map { time -> Float in
-            let index = time % BLEService.fakeData.count
-            return BLEService.fakeData[index]
+                let index = time % BLEService.fakeData.count
+                return BLEService.fakeData[index]
             }.debug("RX: currentPressureValue")
     }
 }
