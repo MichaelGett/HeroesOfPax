@@ -16,12 +16,14 @@ protocol ViewModeling {
     
     var pressuersTitles: Driver<[String]> { get }
     var viewNormalizedHeight: Driver<[CGFloat]> { get }
+    var btStatus: Driver<String> { get }
 }
 
 class ViewModel: ViewModeling {
     var didTapStart: PublishSubject<Void> = PublishSubject<Void>()
     let pressuersTitles: Driver<[String]>
     let viewNormalizedHeight: Driver<[CGFloat]>
+    let btStatus: Driver<String>
     
     private var disposeBag: DisposeBag = DisposeBag()
     
@@ -48,6 +50,20 @@ class ViewModel: ViewModeling {
                     calc(buttonHeight: viewsHeight, currentValue: pressure.value , maxValue: 150)
                 }
             }.asDriver(onErrorJustReturn: [])
+        
+        btStatus = service
+            .didUpdateBTConnection
+            .map{ (status) -> String in
+                switch status {
+                    case .connected:
+                        return "Connected"
+                    case .connecting:
+                        return "Connecting"
+                    case .disconnected:
+                        return "Disconnected"
+                    }
+                }
+        .asDriver(onErrorJustReturn: "Disconnected")
     }
 }
 

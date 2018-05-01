@@ -13,6 +13,7 @@ import RxSwift
 protocol Servicing {
     // Output
     var didUpdatePressures: Observable<[LegPressure]> { get }
+    var didUpdateBTConnection: Observable<BTStatus> { get }
     
     func start() -> Void
 }
@@ -20,6 +21,7 @@ protocol Servicing {
 class Service: Servicing {
     // Output
     let didUpdatePressures: Observable<[LegPressure]>
+    let didUpdateBTConnection: Observable<BTStatus>
     
     // private
     private let state: Observable<LegState>
@@ -46,6 +48,8 @@ class Service: Servicing {
             .map { legState -> [LegPressure] in
                 return legState.pressures
             }.debug("RX: didUpdatePressures")
+        
+        didUpdateBTConnection = bleService.connectionStatus
     }
     
     func start() {

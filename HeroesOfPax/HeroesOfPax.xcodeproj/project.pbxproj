@@ -16,6 +16,8 @@
 		742E2555209784AA0070ABEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 742E2553209784AA0070ABEC /* Main.storyboard */; };
 		742E2557209784AA0070ABEC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 742E2556209784AA0070ABEC /* Assets.xcassets */; };
 		742E255A209784AA0070ABEC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 742E2558209784AA0070ABEC /* LaunchScreen.storyboard */; };
+		742E259A2098C3AC0070ABEC /* UUIDKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742E25972098C3AC0070ABEC /* UUIDKey.swift */; };
+		742E25A22098C64A0070ABEC /* BTConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742E25A12098C64A0070ABEC /* BTConnector.swift */; };
 		F8A84DE2B73D716C635ABB54 /* Pods_HeroesOfPax.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 233478F0876F3FC0B96EFBE9 /* Pods_HeroesOfPax.framework */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +35,8 @@
 		742E2556209784AA0070ABEC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		742E2559209784AA0070ABEC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		742E255B209784AA0070ABEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		742E25972098C3AC0070ABEC /* UUIDKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UUIDKey.swift; sourceTree = "<group>"; };
+		742E25A12098C64A0070ABEC /* BTConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTConnector.swift; sourceTree = "<group>"; };
 		D1B1096E0A2F75607FAF452D /* Pods-HeroesOfPax.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeroesOfPax.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HeroesOfPax/Pods-HeroesOfPax.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -100,6 +104,7 @@
 		742E2543209784A90070ABEC = {
 			isa = PBXGroup;
 			children = (
+				742E25962098C2BA0070ABEC /* BT */,
 				28255D47209886230075DBBB /* Views */,
 				28255D422097A1660075DBBB /* Service */,
 				28255D3F20979EFF0075DBBB /* ViewModel */,
@@ -130,6 +135,16 @@
 				742E255B209784AA0070ABEC /* Info.plist */,
 			);
 			path = HeroesOfPax;
+			sourceTree = "<group>";
+		};
+		742E25962098C2BA0070ABEC /* BT */ = {
+			isa = PBXGroup;
+			children = (
+				742E25972098C3AC0070ABEC /* UUIDKey.swift */,
+				742E25A12098C64A0070ABEC /* BTConnector.swift */,
+			);
+			name = BT;
+			path = HeroesOfPax/BT;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -267,8 +282,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				742E259A2098C3AC0070ABEC /* UUIDKey.swift in Sources */,
 				28255D3E20979C770075DBBB /* Model.swift in Sources */,
 				742E2552209784AA0070ABEC /* ViewController.swift in Sources */,
+				742E25A22098C64A0070ABEC /* BTConnector.swift in Sources */,
 				28255D442097A1780075DBBB /* Service.swift in Sources */,
 				28255D4120979F0A0075DBBB /* ViewModel.swift in Sources */,
 				742E2550209784AA0070ABEC /* AppDelegate.swift in Sources */,

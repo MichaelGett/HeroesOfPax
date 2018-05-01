@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue-Bold</string>
+            <string>HelveticaNeue-Medium</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -113,6 +119,15 @@
                                     <color key="titleColor" red="0.22352941179999999" green="0.76330314919999998" blue="0.35294117650000001" alpha="1" colorSpace="deviceRGB"/>
                                 </state>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not Connected" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MXc-uY-zeb">
+                                <rect key="frame" x="10" y="25" width="355" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="c6f-Sx-FTS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -123,15 +138,19 @@
                             <constraint firstItem="Xi4-6I-p1T" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="9NE-Gs-smt"/>
                             <constraint firstItem="Egl-vv-bwP" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Bma-MF-7wG"/>
                             <constraint firstItem="vi1-mz-P3Y" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Hso-yi-QLE"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="MXc-uY-zeb" secondAttribute="trailing" constant="10" id="TsZ-sx-FSC"/>
                             <constraint firstItem="Xi4-6I-p1T" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.7" id="ZkL-AX-AI0"/>
+                            <constraint firstItem="MXc-uY-zeb" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="5" id="dqn-Ni-ZCc"/>
                             <constraint firstItem="vi1-mz-P3Y" firstAttribute="leading" secondItem="xzE-LP-xwR" secondAttribute="trailing" id="f42-0G-8lr"/>
                             <constraint firstItem="vi1-mz-P3Y" firstAttribute="bottom" secondItem="Xi4-6I-p1T" secondAttribute="bottom" id="rXK-RA-vUp"/>
                             <constraint firstItem="xzE-LP-xwR" firstAttribute="top" secondItem="Xi4-6I-p1T" secondAttribute="top" id="tDC-Wf-hYg"/>
                             <constraint firstItem="vi1-mz-P3Y" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.7" id="wGi-wj-dID"/>
+                            <constraint firstItem="MXc-uY-zeb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="xtl-V5-A7h"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="btStatusLabel" destination="MXc-uY-zeb" id="uyf-rV-hEa"/>
                         <outlet property="startButton" destination="Egl-vv-bwP" id="7DR-eY-t20"/>
                         <outletCollection property="legPressuresLabels" destination="zS5-ZT-NQF" collectionClass="NSMutableArray" id="PfT-Yf-SW8"/>
                         <outletCollection property="legPressuresLabels" destination="NOx-zt-2uy" collectionClass="NSMutableArray" id="WNx-gm-tsK"/>

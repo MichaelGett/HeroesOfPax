@@ -14,6 +14,7 @@ import SnapKit
 class ViewController: UIViewController {
     @IBOutlet var legPressuresLabels: [UIButton]!
     @IBOutlet weak var startButton: UIButton!
+    @IBOutlet weak var btStatusLabel: UILabel!
     
     var viewModel: ViewModeling!
     
@@ -76,6 +77,11 @@ class ViewController: UIViewController {
                 }
                 
             }).disposed(by: disposeBag)
+        
+        viewModel
+            .btStatus
+            .drive(self.btStatusLabel.rx.text)
+            .disposed(by: disposeBag)
     }
 }
 
