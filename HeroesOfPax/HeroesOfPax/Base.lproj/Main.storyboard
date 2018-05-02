@@ -113,6 +113,23 @@
                                     <color key="titleColor" red="0.22352941179999999" green="0.76330314919999998" blue="0.35294117650000001" alpha="1" colorSpace="deviceRGB"/>
                                 </state>
                             </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="36" translatesAutoresizingMaskIntoConstraints="NO" id="i4a-Kc-wCi" userLabel="logos">
+                                <rect key="frame" x="10" y="0.0" width="355" height="100"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WhatsApp Image 2018-05-02 at 11.23.32" translatesAutoresizingMaskIntoConstraints="NO" id="HnA-Se-Seh" userLabel="makehaton logo">
+                                        <rect key="frame" x="0.0" y="0.0" width="94.5" height="100"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Screen Shot 2018-05-02 at 11.10.59" translatesAutoresizingMaskIntoConstraints="NO" id="JjB-ok-9ep" userLabel="singer logo">
+                                        <rect key="frame" x="130.5" y="0.0" width="94" height="100"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gettlogo" translatesAutoresizingMaskIntoConstraints="NO" id="o0L-Vs-xvB">
+                                        <rect key="frame" x="260.5" y="0.0" width="94.5" height="100"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="7cI-C5-PBX"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -123,8 +140,11 @@
                             <constraint firstItem="Xi4-6I-p1T" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="9NE-Gs-smt"/>
                             <constraint firstItem="Egl-vv-bwP" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Bma-MF-7wG"/>
                             <constraint firstItem="vi1-mz-P3Y" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Hso-yi-QLE"/>
+                            <constraint firstItem="i4a-Kc-wCi" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="-10" id="PiH-GY-L4Q"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="i4a-Kc-wCi" secondAttribute="top" constant="20" id="Q3n-PN-hCJ"/>
                             <constraint firstItem="Xi4-6I-p1T" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.7" id="ZkL-AX-AI0"/>
                             <constraint firstItem="vi1-mz-P3Y" firstAttribute="leading" secondItem="xzE-LP-xwR" secondAttribute="trailing" id="f42-0G-8lr"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="leading" secondItem="i4a-Kc-wCi" secondAttribute="leading" constant="-10" id="i5r-Cx-VPY"/>
                             <constraint firstItem="vi1-mz-P3Y" firstAttribute="bottom" secondItem="Xi4-6I-p1T" secondAttribute="bottom" id="rXK-RA-vUp"/>
                             <constraint firstItem="xzE-LP-xwR" firstAttribute="top" secondItem="Xi4-6I-p1T" secondAttribute="top" id="tDC-Wf-hYg"/>
                             <constraint firstItem="vi1-mz-P3Y" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.7" id="wGi-wj-dID"/>
@@ -146,6 +166,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Screen Shot 2018-05-02 at 11.10.59" width="548" height="264"/>
+        <image name="WhatsApp Image 2018-05-02 at 11.23.32" width="625" height="625"/>
+        <image name="gettlogo" width="138" height="67"/>
         <image name="leftLegFlipped" width="241" height="1256"/>
         <image name="rightLeg" width="241" height="1256"/>
     </resources>
