@@ -9,4 +9,5 @@ target 'HeroesOfPax' do
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'RxOptional'
+  pod 'SnapKit'
 end

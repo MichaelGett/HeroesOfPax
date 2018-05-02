@@ -1,7 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" systemVersion="17A277" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,7 +17,33 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Screen Shot 2018-05-02 at 11.10.59" translatesAutoresizingMaskIntoConstraints="NO" id="RWI-Eu-JJD" userLabel="singer logo">
+                                <rect key="frame" x="30" y="211.5" width="315" height="264"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gettlogo" translatesAutoresizingMaskIntoConstraints="NO" id="1Ne-0D-pUa">
+                                <rect key="frame" x="30" y="485.5" width="315" height="67"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WhatsApp Image 2018-05-02 at 11.23.32" translatesAutoresizingMaskIntoConstraints="NO" id="fic-jh-hUH" userLabel="makehaton logo">
+                                <rect key="frame" x="30" y="20" width="315" height="191.5"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="1Ne-0D-pUa" secondAttribute="trailing" constant="30" id="0CM-k7-KAd"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="leading" secondItem="RWI-Eu-JJD" secondAttribute="leading" constant="-30" id="0eA-Yv-g8O"/>
+                            <constraint firstItem="fic-jh-hUH" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="E5o-N5-GFV"/>
+                            <constraint firstItem="RWI-Eu-JJD" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="Evh-ak-MZc"/>
+                            <constraint firstItem="RWI-Eu-JJD" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="-30" id="FQL-aJ-TOa"/>
+                            <constraint firstItem="1Ne-0D-pUa" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Lu3-5G-lEz"/>
+                            <constraint firstItem="1Ne-0D-pUa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="NJC-Sp-arc"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fic-jh-hUH" secondAttribute="trailing" constant="30" id="Rvj-wk-Odp"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="fic-jh-hUH" secondAttribute="top" id="f8S-kk-6Vx"/>
+                            <constraint firstItem="RWI-Eu-JJD" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="mfR-qC-kiw"/>
+                            <constraint firstItem="RWI-Eu-JJD" firstAttribute="top" secondItem="fic-jh-hUH" secondAttribute="bottom" id="oOs-mG-ZkG"/>
+                            <constraint firstItem="1Ne-0D-pUa" firstAttribute="top" secondItem="RWI-Eu-JJD" secondAttribute="bottom" constant="10" id="ooN-O2-P9U"/>
+                            <constraint firstItem="fic-jh-hUH" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="oyB-uX-6s8"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
@@ -22,4 +52,9 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Screen Shot 2018-05-02 at 11.10.59" width="548" height="264"/>
+        <image name="WhatsApp Image 2018-05-02 at 11.23.32" width="625" height="625"/>
+        <image name="gettlogo" width="138" height="67"/>
+    </resources>
 </document>
