@@ -21,7 +21,7 @@ protocol BLEServicing {
     var start: PublishSubject<Void> { get }
     
     //output
-    var currentPressureValue: Observable<Float> { get }
+    var currentPressureValue: Observable<(Int,Float)> { get }
     var connectionStatus: Observable<BTStatus> { get }
     
 }
@@ -32,29 +32,24 @@ class BLEService: NSObject, BLEServicing, BTConnectorDelegate {
     let btconnector = BTConnector()
 
     let connectionStatusPublish: PublishSubject<BTStatus> = PublishSubject<BTStatus>()
-    let currentPressureValuePublush: PublishSubject<Float> = PublishSubject<Float>()
+    let currentPressureValuePublish: PublishSubject<(Int,Float)> = PublishSubject<(Int,Float)>()
     
-    var currentPressureValue: Observable<Float>  {
-        return currentPressureValuePublush.asObservable()
+    var currentPressureValue: Observable<(Int,Float)> {
+        return currentPressureValuePublish.asObservable()
     }
     var connectionStatus: Observable<BTStatus> {
         return connectionStatusPublish.asObservable()
     }
     
-    static let fakeData: [Float] = [0, 30,60,90,120,30,60,90,120,30,60,90,120,30,60,90,120,30,60,90,120,-1]
+    static let fakeData: [(Int, Float)] = [(0,12),(0,23),(0,60),
+                                            (1,12),(1,23),(1,60),
+                                            (2,12),(2,23),(2,60),
+                                            (3,12),(3,23),(3,60),
+                                            (4,12),(4,23),(4,60),
+                                            (-1,-1)]
   
     private var disposeBag: DisposeBag = DisposeBag()
     override init() {
-        
-//        currentPressureValue = start
-//            .observeOn(MainScheduler.instance)
-//            .flatMapLatest { _ -> Observable<Int> in
-//                Observable<Int>.timer(0, period: 1, scheduler: MainScheduler.instance)
-//            }
-//            .map { time -> Float in
-//                let index = time % BLEService.fakeData.count
-//                return BLEService.fakeData[index]
-//            }.debug("RX: currentPressureValue")
         
         super.init()
         btconnector.delegate = self
@@ -72,10 +67,14 @@ class BLEService: NSObject, BLEServicing, BTConnectorDelegate {
     }
     
     func receivedMessage(message: String) {
-        guard let pressure = Float(message) else {
+        if message == "pressure release" {
+            currentPressureValuePublish.onNext((-1,-1))
+        }
+        let data = message.split(separator: ",")
+        guard data.count == 2, let valve = Int(data[0]), let pressure = Float(data[1]) else {
             return
         }
-        currentPressureValuePublush.onNext(pressure)
+        currentPressureValuePublish.onNext((valve,pressure))
     }
 
 }

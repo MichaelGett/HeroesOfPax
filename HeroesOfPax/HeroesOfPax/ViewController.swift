@@ -47,6 +47,7 @@ class ViewController: UIViewController {
                 self.topConstraint[button.tag] = make.top.equalTo(button.frame.height).constraint
             }
         }
+        self.view.layoutIfNeeded()
     }
     
     private func setupBindings() {
@@ -67,13 +68,14 @@ class ViewController: UIViewController {
         
         viewModel
             .viewNormalizedHeight
-            .drive(onNext: { [weak self] heights in
+            .drive(onNext: { [weak self] heights,time in
+                
                 self?.legPressuresLabels.forEach { (button) in
                     self?.topConstraint[button.tag]?.update(offset: button.frame.height - heights[button.tag])
-                
-                    UIView.animate(withDuration: 1, animations: {
-                        self?.view.layoutIfNeeded()
-                    })
+                    self?.view.layoutIfNeeded()
+//                    UIView.animate(withDuration: TimeInterval(time), animations: {
+//                        self?.view.layoutIfNeeded()
+//                    })
                 }
                 
             }).disposed(by: disposeBag)

@@ -35,6 +35,25 @@ class Service: Servicing {
         
         state = bleService
             .currentPressureValue
+            .buffer(timeSpan: 1, count: 3, scheduler: MainScheduler.instance)
+            .filter { $0.count > 0 }
+            .map { (dataPoint) -> (Int, Float) in
+                if dataPoint.contains(where: { (a) -> Bool in
+                    if a.0 == -1 && a.1 == -1 { return true }
+                    else { return false }
+                }) {
+                    return (-1,-1)
+                } else {
+                    let sorted = dataPoint.sorted(by: { (a, b) -> Bool in
+                        if a.0 == b.0 {
+                            return a.1 > b.1
+                        } else {
+                            return a.0 > b.0
+                        }
+                    })
+                    return sorted.first!
+                }
+            }
             .withLatestFrom(_state.asObservable()) {(currentPressure, legState) -> LegState in
                  legState.nextState(currentPressure)
             }

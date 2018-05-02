@@ -13,8 +13,16 @@ struct Temperature {
     let leftLegTemp: Float
 }
 
+enum Direction {
+    case up
+    case down
+}
+
+
 struct LegPressure {
     let value: Float //Pressure probalby 0-150
+    let direction: Direction
+    
 }
 
 
@@ -22,30 +30,20 @@ struct LegState {
     let currentPumpIndex: Int
     let pressures: [LegPressure]
     
-    func nextState(_ newPressure: Float) -> LegState {
-        guard newPressure != -1 else {
+    func nextState(_ newPressure: (Int,Float)) -> LegState {
+        guard newPressure.1 != -1 else {
             //End of cycle - pressure reduced for all - back to initial state
             return LegState.initialState()
         }
-        let currentPressure = pressures[currentPumpIndex]
-        let newLegPressure = LegPressure(value: newPressure)
         var mutablePressures = pressures
+        let newLegPressure = LegPressure(value: newPressure.1, direction: .up)
         
-        if currentPressure.value > newPressure { //Next pump
-            let newIndex = (currentPumpIndex + 1) % pressures.count
-            mutablePressures[newIndex] = newLegPressure
-            
-            return LegState(currentPumpIndex: newIndex , pressures: mutablePressures)
-        } else {
-            mutablePressures[currentPumpIndex] = newLegPressure
-            
-            return LegState(currentPumpIndex: currentPumpIndex , pressures: mutablePressures)
-        }
+        mutablePressures[newPressure.0] = newLegPressure
+        return LegState(currentPumpIndex: newPressure.0 , pressures: mutablePressures)
     }
     
     static func initialState() -> LegState {
-        let firstPressures: [LegPressure] = (0..<5).map { _ in LegPressure(value: 0.0) }
-        
+        let firstPressures: [LegPressure] = (0..<5).map { _ in LegPressure(value: 0.0, direction: .down) }
         return LegState(currentPumpIndex: 0, pressures: firstPressures)
     }
     

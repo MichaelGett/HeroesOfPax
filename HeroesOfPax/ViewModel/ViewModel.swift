@@ -15,14 +15,14 @@ protocol ViewModeling {
     var didTapStart: PublishSubject<Void> { get }
     
     var pressuersTitles: Driver<[String]> { get }
-    var viewNormalizedHeight: Driver<[CGFloat]> { get }
+    var viewNormalizedHeight: Driver<([CGFloat], Int)> { get }
     var btStatus: Driver<String> { get }
 }
 
 class ViewModel: ViewModeling {
     var didTapStart: PublishSubject<Void> = PublishSubject<Void>()
     let pressuersTitles: Driver<[String]>
-    let viewNormalizedHeight: Driver<[CGFloat]>
+    let viewNormalizedHeight: Driver<([CGFloat], Int)>
     let btStatus: Driver<String>
     
     private var disposeBag: DisposeBag = DisposeBag()
@@ -45,11 +45,12 @@ class ViewModel: ViewModeling {
         
         viewNormalizedHeight = service
             .didUpdatePressures
-            .map { (pressures: [LegPressure]) -> [CGFloat] in
-                return pressures.map { (pressure: LegPressure) -> CGFloat in
+            .map { (pressures: [LegPressure]) -> ([CGFloat],Int) in
+                let heights = pressures.map { (pressure: LegPressure) -> CGFloat in
                     calc(buttonHeight: viewsHeight, currentValue: pressure.value , maxValue: 150)
                 }
-            }.asDriver(onErrorJustReturn: [])
+                return (heights, pressures.first?.direction == .down ? 12 : 1)
+            }.asDriver(onErrorJustReturn: ([],0))
         
         btStatus = service
             .didUpdateBTConnection
